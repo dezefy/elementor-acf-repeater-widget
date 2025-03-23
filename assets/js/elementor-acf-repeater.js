@@ -3,6 +3,10 @@
  */
 (function($) {
     'use strict';
+
+    if (typeof elementor !== 'undefined') {
+        console.log('You are in the Elementor editor.');
+    }
     
     // Run when Elementor editor is loaded
     $(window).on('elementor/frontend/init', function() {
