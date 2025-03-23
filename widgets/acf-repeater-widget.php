@@ -305,6 +305,15 @@ class Elementor_ACF_Repeater extends \Elementor\Widget_Base {
             ]
         );
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'item_box_shadow',
+                'label' => __('Box Shadow', 'elementor-acf-repeater'),
+                'selector' => '{{WRAPPER}} .acf-repeater-item',
+            ]
+        );
+
         $this->end_controls_section();
 
         // Style Tab - Headings
