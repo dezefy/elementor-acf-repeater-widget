@@ -647,7 +647,11 @@ class Elementor_ACF_Repeater extends \Elementor\Widget_Base {
     /**
      * Process shortcodes in the HTML template
      */
-    private function process_template_shortcodes($template, $subfields, $prefix, $row) {
+    private function process_template_shortcodes($template, $subfields, $prefix, $row, $index = 0) {
+        // Handle the index shortcode first
+        $index_shortcode = '[' . $prefix . 'index]';
+        $template = str_replace($index_shortcode, ($index + 1), $template);
+        
         // Replace each shortcode with the corresponding value
         foreach ($subfields as $field_name) {
             $shortcode = '[' . $prefix . $field_name . ']';
@@ -719,16 +723,13 @@ class Elementor_ACF_Repeater extends \Elementor\Widget_Base {
             echo '<style>' . $settings['custom_css'] . '</style>';
         }
         
-        // Get layout settings
-        $items_per_row = !empty($settings['items_per_row']) ? $settings['items_per_row'] : 1;
-        
         // Start output
         echo '<div class="acf-repeater-wrapper acf-grid-layout">';
         
         // Loop through each row
-        foreach ($rows as $row) {
-            // Process template for this row
-            $processed_template = $this->process_template_shortcodes($html_template, $subfields, $prefix, $row);
+        foreach ($rows as $index => $row) {
+            // Process template for this row, passing the current index
+            $processed_template = $this->process_template_shortcodes($html_template, $subfields, $prefix, $row, $index);
             
             // Output the processed template
             echo $processed_template;

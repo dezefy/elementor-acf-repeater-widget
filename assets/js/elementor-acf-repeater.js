@@ -38,8 +38,19 @@
                             var subfields = response.data;
                             var html = '<p>Available subfields:</p><div class="acfr-subfields-list">';
                             
+                            // Add the index shortcode at the top of the list
+                            var indexShortcode = '[' + prefix + 'index]';
+                            html += '<div class="acfr-subfield-item">' +
+                                    '<code class="acfr-shortcode">' + indexShortcode + '</code>' +
+                                    '<button class="acfr-copy-btn" data-shortcode="' + indexShortcode + '" title="Copy to clipboard">' +
+                                    '<i class="eicon-copy"></i>' +
+                                    '</button>' +
+                                    '<span class="acfr-field-name">Item number (1, 2, 3, etc.)</span>' +
+                                    '</div>';
+                            
                             // Create a default template with a wrapper div
                             var codeTemplate = '<div class="acf-repeater-item">\n';
+                            codeTemplate += '    #' + indexShortcode + ': ';
                             
                             // Create list of available subfields with copy buttons
                             subfields.forEach(function(field) {
@@ -51,7 +62,10 @@
                                         '</button>' +
                                         '<span class="acfr-field-name">' + field + '</span>' +
                                         '</div>';
-                                codeTemplate += '    ' + shortcode + '\n';
+                                
+                                if (field.includes('title') || field.includes('name')) {
+                                    codeTemplate += shortcode + '\n';
+                                }
                             });
                             
                             // Close the template div
