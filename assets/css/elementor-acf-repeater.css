@@ -1,0 +1,89 @@
+/**
+ * Elementor ACF Repeater Widget CSS
+ */
+
+/* Wrapper */
+.acf-repeater-wrapper {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Default item styling */
+.acf-repeater-item {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+}
+
+/* Error messages */
+.acf-repeater-error {
+    padding: 15px;
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+/* Info messages */
+.acf-repeater-message {
+    padding: 15px;
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border: 1px solid #bee5eb;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+/* Default button styling */
+.acf-repeater-item a.button,
+.acf-repeater-item button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1.5;
+    transition: all 0.3s ease;
+}
+
+.acf-repeater-item a.button:hover,
+.acf-repeater-item button:hover {
+    background-color: #0056b3;
+    text-decoration: none;
+}
+
+/* Editor styles */
+#acf-repeater-subfields {
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+#acf-repeater-subfields ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+#acf-repeater-subfields li {
+    margin-bottom: 5px;
+}
+
+#acf-repeater-subfields code {
+    background-color: #e0e0e0;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-family: monospace;
+}
+
+/* Preview in editor */
+.elementor-repeater-preview {
+    opacity: 0.7;
+}
