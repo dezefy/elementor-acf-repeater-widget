@@ -1,0 +1,20 @@
+name: Deploy Plugin to WordPress Server
+
+on:
+  push:
+    branches:
+      - main  # Change if using a different branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install SSHpass
+        run: sudo apt-get install sshpass
+
+      - name: Deploy via Rsync with Password
+        run: |
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -p ${{ secrets.SSH_PORT }}" ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.PLUGIN_PATH }}
