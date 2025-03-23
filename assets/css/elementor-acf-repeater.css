@@ -125,22 +125,38 @@
     margin-right: 8px;
     cursor: pointer;
     user-select: all;
+    flex-grow: 1;
 }
 
 .acfr-copy-btn {
-    background-color: #007cba;
+    background-color: #556068;
     color: white;
     border: none;
     border-radius: 3px;
-    padding: 4px 8px;
+    width: 28px;
+    height: 28px;
     cursor: pointer;
     font-size: 12px;
     margin-right: 8px;
-    transition: background-color 0.2s;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
 }
 
 .acfr-copy-btn:hover {
-    background-color: #006ba1;
+    background-color: #6d7882;
+}
+
+.acfr-copy-btn i {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+}
+
+.acfr-copy-btn .eicon-check {
+    color: #6fc99f;
 }
 
 .acfr-field-name {

@@ -275,6 +275,26 @@ class Elementor_ACF_Repeater extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
+            'item_border_radius',
+            [
+                'label' => __('Border Radius', 'elementor-acf-repeater'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .acf-repeater-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+                'default' => [
+                    'top' => '5',
+                    'right' => '5',
+                    'bottom' => '5',
+                    'left' => '5',
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
+            ]
+        );
+
+        $this->add_control(
             'item_bg_color',
             [
                 'label' => __('Background Color', 'elementor-acf-repeater'),

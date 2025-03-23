@@ -46,7 +46,9 @@
                                 var shortcode = '[' + prefix + field + ']';
                                 html += '<div class="acfr-subfield-item">' +
                                         '<code class="acfr-shortcode">' + shortcode + '</code>' +
-                                        '<button class="acfr-copy-btn" data-shortcode="' + shortcode + '">Copy</button>' +
+                                        '<button class="acfr-copy-btn" data-shortcode="' + shortcode + '" title="Copy to clipboard">' +
+                                        '<i class="eicon-copy"></i>' +
+                                        '</button>' +
                                         '<span class="acfr-field-name">' + field + '</span>' +
                                         '</div>';
                                 codeTemplate += '    ' + shortcode + '\n';
@@ -73,9 +75,16 @@
                                 
                                 // Visual feedback
                                 var $btn = $(this);
-                                $btn.text('Copied!');
+                                var $icon = $btn.find('i');
+                                // Store original class
+                                var originalClass = $icon.attr('class');
+                                
+                                // Change to checkmark icon
+                                $icon.removeClass().addClass('eicon-check');
+                                
                                 setTimeout(function() {
-                                    $btn.text('Copy');
+                                    // Restore original icon
+                                    $icon.removeClass().addClass(originalClass);
                                 }, 1500);
                             });
                             
