@@ -4,10 +4,10 @@
 (function($) {
     'use strict';
 
-    if (typeof elementor !== 'undefined') {
-        
         // Run when Elementor editor is loaded
         $(window).on('elementor/frontend/init', function() {
+
+            if (typeof elementor !== 'undefined') {
             // Hook into the panel editor
             elementor.hooks.addAction('panel/open_editor/widget/acf_repeater', function(panel, model, view) {
                 var $element = view.$el;
@@ -127,10 +127,13 @@
                     panel.$el.find('[data-setting="acf_repeater_field"]').trigger('change');
                 }
             });
+            
+        } else {
+            console.log('not working');
+        }
+
         });
 
-    } else {
-        console.log('not working');
-    }
+    
     
 })(jQuery);
