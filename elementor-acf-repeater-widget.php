@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Elementor ACF Repeater Widget
  * Description: Custom Elementor widget to display ACF repeater fields with custom HTML templates
- * Version:     1.0.9
+ * Version:     1.0.10
  * Author:      Dezefy
  * Author URI:  https://dezefy.com
  * Text Domain: elementor-acf-repeater

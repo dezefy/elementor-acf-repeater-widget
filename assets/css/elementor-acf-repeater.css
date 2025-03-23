@@ -8,8 +8,23 @@
     box-sizing: border-box;
 }
 
+/* Grid layout */
+.acf-grid-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* For responsive layouts */
+@media (max-width: 767px) {
+    .acf-repeater-item {
+        width: 100% !important;
+    }
+}
+
 /* Default item styling */
 .acf-repeater-item {
+    box-sizing: border-box;
     margin-bottom: 20px;
     padding: 20px;
     background-color: #f9f9f9;
@@ -86,4 +101,49 @@
 /* Preview in editor */
 .elementor-repeater-preview {
     opacity: 0.7;
+}
+
+/* Subfields list styling for easier copying */
+.acfr-subfields-list {
+    margin-top: 10px;
+}
+
+.acfr-subfield-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: #f7f7f7;
+}
+
+.acfr-shortcode {
+    background-color: #e0e0e0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-family: monospace;
+    margin-right: 8px;
+    cursor: pointer;
+    user-select: all;
+}
+
+.acfr-copy-btn {
+    background-color: #007cba;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-right: 8px;
+    transition: background-color 0.2s;
+}
+
+.acfr-copy-btn:hover {
+    background-color: #006ba1;
+}
+
+.acfr-field-name {
+    color: #555;
+    font-size: 12px;
 }

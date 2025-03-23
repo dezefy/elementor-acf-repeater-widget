@@ -36,25 +36,48 @@
                             
                             // Update the subfields display
                             var subfields = response.data;
-                            var html = '<p>Available subfields:</p><ul>';
+                            var html = '<p>Available subfields:</p><div class="acfr-subfields-list">';
                             
                             // Create a default template with a wrapper div
                             var codeTemplate = '<div class="acf-repeater-item">\n';
                             
-                            // Create list of available subfields
+                            // Create list of available subfields with copy buttons
                             subfields.forEach(function(field) {
                                 var shortcode = '[' + prefix + field + ']';
-                                html += '<li><code>' + shortcode + '</code> - ' + field + '</li>';
+                                html += '<div class="acfr-subfield-item">' +
+                                        '<code class="acfr-shortcode">' + shortcode + '</code>' +
+                                        '<button class="acfr-copy-btn" data-shortcode="' + shortcode + '">Copy</button>' +
+                                        '<span class="acfr-field-name">' + field + '</span>' +
+                                        '</div>';
                                 codeTemplate += '    ' + shortcode + '\n';
                             });
                             
                             // Close the template div
                             codeTemplate += '</div>';
                             
-                            html += '</ul>';
+                            html += '</div>';
                             
                             // Update the HTML
                             panel.$el.find('#acf-repeater-subfields').html(html);
+                            
+                            // Add click handlers for the copy buttons
+                            panel.$el.find('.acfr-copy-btn').on('click', function(e) {
+                                e.preventDefault();
+                                
+                                var shortcode = $(this).data('shortcode');
+                                var tempInput = $('<input>');
+                                $('body').append(tempInput);
+                                tempInput.val(shortcode).select();
+                                document.execCommand('copy');
+                                tempInput.remove();
+                                
+                                // Visual feedback
+                                var $btn = $(this);
+                                $btn.text('Copied!');
+                                setTimeout(function() {
+                                    $btn.text('Copy');
+                                }, 1500);
+                            });
                             
                             // Update the code editor with available shortcodes
                             var codeEditor = panel.$el.find('[data-setting="html_template"]');

@@ -102,6 +102,81 @@ class Elementor_ACF_Repeater extends \Elementor\Widget_Base {
 
         $this->end_controls_section();
 
+        // Layout Section - NEW SECTION
+        $this->start_controls_section(
+            'layout_section',
+            [
+                'label' => __('Layout', 'elementor-acf-repeater'),
+                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+            ]
+        );
+
+        // Items per row control
+        $this->add_responsive_control(
+            'items_per_row',
+            [
+                'label' => __('Items Per Row', 'elementor-acf-repeater'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => '1',
+                'options' => [
+                    '1' => '1',
+                    '2' => '2',
+                    '3' => '3',
+                    '4' => '4',
+                    '5' => '5',
+                    '6' => '6',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .acf-repeater-wrapper' => 'display: flex; flex-wrap: wrap;',
+                    '{{WRAPPER}} .acf-repeater-item' => 'width: calc(100% / {{VALUE}} - ({{horizontal_gap.SIZE}}px * ({{VALUE}} - 1) / {{VALUE}}));',
+                ],
+            ]
+        );
+
+        // Horizontal gap
+        $this->add_responsive_control(
+            'horizontal_gap',
+            [
+                'label' => __('Horizontal Gap', 'elementor-acf-repeater'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'default' => [
+                    'size' => 20,
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .acf-repeater-wrapper' => 'column-gap: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        // Vertical gap
+        $this->add_responsive_control(
+            'vertical_gap',
+            [
+                'label' => __('Vertical Gap', 'elementor-acf-repeater'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'default' => [
+                    'size' => 20,
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .acf-repeater-wrapper' => 'row-gap: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
         // Style Tab - Wrapper
         $this->start_controls_section(
             'style_wrapper_section',
@@ -615,8 +690,11 @@ class Elementor_ACF_Repeater extends \Elementor\Widget_Base {
             echo '<style>' . $settings['custom_css'] . '</style>';
         }
         
+        // Get layout settings
+        $items_per_row = !empty($settings['items_per_row']) ? $settings['items_per_row'] : 1;
+        
         // Start output
-        echo '<div class="acf-repeater-wrapper">';
+        echo '<div class="acf-repeater-wrapper acf-grid-layout">';
         
         // Loop through each row
         foreach ($rows as $row) {
